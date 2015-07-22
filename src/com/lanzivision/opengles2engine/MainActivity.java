@@ -19,13 +19,13 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		
-		// Turn off the window's title bar
+	// Turn off the window's title bar
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         
         // Super
-		super.onCreate(savedInstanceState);
+	super.onCreate(savedInstanceState);
 		
-		// Fullscreen mode
+	// Fullscreen mode
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         
         // Screen size
@@ -37,9 +37,9 @@ public class MainActivity extends Activity {
         glSurfaceView = new GLSurf(this, size.x, size.y);
         
         // Set our view.	
-		setContentView(R.layout.activity_main);
+	setContentView(R.layout.activity_main);
 		
-		// Retrieve our Relative layout from our main layout we just set to our view.
+	// Retrieve our Relative layout from our main layout we just set to our view.
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.gamelayout);
         
         // Attach our surfaceview to our relative layout from our main layout.
@@ -51,17 +51,17 @@ public class MainActivity extends Activity {
 
 	@Override
 	protected void onPause() {
-		super.onPause();
+	super.onPause();
 		
-		// Preserve OpenGL Context so it doesn't reload after switching activities
+	// Preserve OpenGL Context so it doesn't reload after switching activities
         glSurfaceView.setPreserveEGLContextOnPause(true);
-		glSurfaceView.onPause();
+	glSurfaceView.onPause();
 	}
 
 	@Override
 	protected void onResume() {
-		super.onResume();
-		glSurfaceView.onResume();
+	super.onResume();
+	glSurfaceView.onResume();
 	}
 
 
