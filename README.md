@@ -16,7 +16,7 @@ As stated, the open source GLText written by Jocelyn Demoy (https://github.com/j
 and crisp way to display text within an OpenGL activity. The GLText class has been incorporated into this engine, special 
 thanks to Jodem and Fractious Games for creating such a robust class.
 
-Another large issue is incorporated OpenGL and the native Android classes. On iOS this is very easy by creating a 
+Another large issue is incorporated OpenGL and the native Android APIs. On iOS this is very easy by creating a 
 transparent top layer XIB to house all native API's, but Android doesn't allow that. This engine saves the OpenGL context 
 and allows the engine to seamlessly switch between multiple Android native class XML Activities and the OpenGL Activity. 
 The OpenGL employs ES2, basic shaders, basic textures, and sprite sheets.
