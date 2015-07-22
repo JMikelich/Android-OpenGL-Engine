@@ -26,37 +26,39 @@ public class SSTexture {
 	
 	
 	public SSTexture(String textureName, int maxX, int maxY, Context mContext) {
-		super();
 		
-		this.isLoaded = true;
+	super();
 		
-		this.maxCellsX = maxX;
-		this.maxCellsY = maxY;
+	this.isLoaded = true;
 		
-		int id = mContext.getResources().getIdentifier(textureName, null, mContext.getPackageName());
-		// Temporary create a bitmap
-		Bitmap bmp = BitmapFactory.decodeResource(mContext.getResources(), id);
+	this.maxCellsX = maxX;
+	this.maxCellsY = maxY;
 		
-		this.textureArray = TextureHelper.loadTextureWithRelease(bmp);
+	int id = mContext.getResources().getIdentifier(textureName, null, mContext.getPackageName());
+	// Temporary create a bitmap
+	Bitmap bmp = BitmapFactory.decodeResource(mContext.getResources(), id);
+		
+	this.textureArray = TextureHelper.loadTextureWithRelease(bmp);
         this.textureIndex = this.textureArray[0];
         
         // We are done using the bitmap so we should recycle it.
-		bmp.recycle();
+	bmp.recycle();
+	
 	}
 	
 	public void resetTexture()
 	{
-		this.isLoaded = false;
+	this.isLoaded = false;
 		
-		this.maxCellsX = 0;
-		this.maxCellsY = 0;
+	this.maxCellsX = 0;
+	this.maxCellsY = 0;
 		
-		this.textureIndex = 0;
+	this.textureIndex = 0;
 		
-		//GLES20.glDeleteTextures(1, this.textureIndex);
-		GLES20.glDeleteTextures(1, this.textureArray, 0);
+	//GLES20.glDeleteTextures(1, this.textureIndex);
+	GLES20.glDeleteTextures(1, this.textureArray, 0);
 		
-		this.textureArray = new int[0];
+	this.textureArray = new int[0];
 
 	}
 
