@@ -1,5 +1,5 @@
 # Android OpenGL ES2 Multi-Activity Engine
-A very basic and simple OpenGL ES2 engine which incorporates a GLText function and smooth multi-activity switching.
+A very basic and simple OpenGL ES2 engine which incorporates a GLText class and smooth multi-activity switching.
 
 Overview: 
 The purpose for this engine was to serve as a basic framework for my to-do list making app Jamie's To Do. 
