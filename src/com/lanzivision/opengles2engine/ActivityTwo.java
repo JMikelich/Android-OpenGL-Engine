@@ -19,44 +19,23 @@ public class ActivityTwo extends Activity {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		context = this;
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_two);
 		
-		 int age = getIntent().getIntExtra("user-age", -1);
-		String name = getIntent().getStringExtra("user-name");
+	context = this;
+	super.onCreate(savedInstanceState);
+	setContentView(R.layout.activity_two);
 		
-		TextView txtLabel =(TextView)findViewById(R.id.textViewActTwo);
-		
-		//txtLabel.setText("Your name is " + name +" you are " +age+ " years old.");
-		
-		
-		Button btnTwo = (Button)findViewById(R.id.buttonActTwo);
-		
-		btnTwo.setOnClickListener(new OnClickListener() {
-			
-			
-			
-			@Override
-			public void onClick(View v) {
-				//Intent intent = new Intent();
-				//intent.putExtra("dog-years", 210);
-				//setResult(RESULT_OK, intent);
-				//Intent goToMainActivity = new Intent(context,MainActivity.class);
-				  // goToMainActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // Will clear out your activity history stack till now
-				   //startActivity(goToMainActivity);
-				//Intent intent = new Intent(context,MainActivity.class);
-				//context.startActivity(intent);
-				
-			
-				
-				Intent i = new Intent(context, MainActivity.class);
-				startActivity(i);
+	TextView txtLabel =(TextView)findViewById(R.id.textViewActTwo);
+	Button btnTwo = (Button)findViewById(R.id.buttonActTwo);
+	btnTwo.setOnClickListener(new OnClickListener() {
 
-				
-				
-			}
-		});
+	@Override
+	public void onClick(View v) {
+	
+		Intent i = new Intent(context, MainActivity.class);
+		startActivity(i);
+		
+		}
+	});
 	}
 
 
