@@ -22,10 +22,7 @@ and allows the engine to seamlessly switch between multiple Android native class
 The OpenGL employs ES2, basic shaders, basic textures, and sprite sheets.
 
 Usage: 
-The app is set up to run in Eclipse with some basic examples of usage. If the app user touches the screen in the 
-top 4/5 of the screen, the LanziVision logo will be centered on the users touch location. If the user touches the bottom 
-1/5 of the screen, the OpenGL activity will switch with the Android XML activity (saving the OpenGL context as it does).
-The Android activity is set up with a text description, the LanziVision logo, and a button to return to the OpenGL activity.
+The app is set up to run in Eclipse with some basic examples of usage. Download the project, and import it into Eclipse as 'Existing Code into Workspace'. If the app user touches the screen in the top 4/5 of the screen, the LanziVision logo will be centered on the users touch location. If the user touches the bottom 1/5 of the screen, the OpenGL activity will switch with the Android XML activity (saving the OpenGL context as it does).The Android activity is set up with a text description, the LanziVision logo, and a button to return to the OpenGL activity.
 
 Licensing: 
 This engine is open source, feel free to use it in any commercial or personal project without feeling need to
