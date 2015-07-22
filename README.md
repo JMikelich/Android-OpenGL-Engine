@@ -14,7 +14,7 @@ bind and display. The engine also is designed to do this as simply as possible.
 One of the largest difficulties with OpenGL is displaying clear and readable font loaded from any truetype font file. 
 As stated, the open source GLText written by Jocelyn Demoy (https://github.com/jodem/glText-Android) creates a seamless 
 and crisp way to display text within an OpenGL activity. The GLText class has been incorporated into this engine, special 
-thanks to Jodem and Fractious Games for created such a robust class.
+thanks to Jodem and Fractious Games for creating such a robust class.
 
 Another large issue is incorporated OpenGL and the native Android classes. On iOS this is very easy by creating a 
 transparent top layer XIB to house all native API's, but Android doesn't allow that. This engine saves the OpenGL context 
