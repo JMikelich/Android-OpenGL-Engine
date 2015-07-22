@@ -5,7 +5,7 @@ Overview:
 The purpose for this engine was to serve as a basic framework for my to-do list making app Jamie's To Do. 
 The difficulty was requiring usage of the device keyboard while maintaining the UI Jamie's To Do has on the iOS.
 After trying multiple platforms (which either had the keyboard but the UI wasn't sufficient, or the UI was sufficient 
-but the keyboard wasn't intergraded), I decided that a simple OpenGL platform was the way to go.
+but the keyboard wasn't integrated), I decided that a simple OpenGL platform was the way to go.
 
 Description: 
 The engine is set up to deal with loading textures, both spritesheet or single unit, and using sprites to 
@@ -18,7 +18,7 @@ thanks to Jodem and Fractious Games for created such a robust class.
 
 Another large issue is incorporated OpenGL and the native Android classes. On iOS this is very easy by creating a 
 transparent top layer XIB to house all native API's, but Android doesn't allow that. This engine saves the OpenGL context 
-and allows the engine to seamlessly switch between multiple Android native class XML Activities and their OpenGL Activity. 
+and allows the engine to seamlessly switch between multiple Android native class XML Activities and the OpenGL Activity. 
 The OpenGL employs ES2, basic shaders, basic textures, and sprite sheets.
 
 Usage: 
