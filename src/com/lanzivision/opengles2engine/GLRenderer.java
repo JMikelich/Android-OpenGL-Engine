@@ -64,29 +64,29 @@ public class GLRenderer implements Renderer {
 	
 	public GLRenderer(Context c, int width, int height)
 	{
-		mContext = c;
-		mLastTime = System.currentTimeMillis() + 100;
+	mContext = c;
+	mLastTime = System.currentTimeMillis() + 100;
 		
-		mScreenWidth = width;
-		mScreenHeight = height;
+	mScreenWidth = width;
+	mScreenHeight = height;
 
 	}
 	
 	public void onPause()
 	{
-		/* Pause app assets when needed */
+	/* Pause app assets when needed */
 	}
 	
 	public void onResume()
 	{
-		/* Resume app assets when needed */
-		mLastTime = System.currentTimeMillis();
+	/* Resume app assets when needed */
+	mLastTime = System.currentTimeMillis();
 	}
 	
 	@Override
 	public void onDrawFrame(GL10 unused) {
 		
-		// Get the current time
+	// Get the current time
     	long now = System.currentTimeMillis();
     	
     	// We should make sure we are valid and sane
@@ -95,38 +95,35 @@ public class GLRenderer implements Renderer {
     	// Get the amount of time the last frame took.
     	long delta = now - mLastTime;
 		
-		// Update our scene
+	// Update our scene
     	updateScene((float)delta/ 1000);
 		
-		// Render our example
-		render(mtrxProjectionAndView);
+	// Render our example
+	render(mtrxProjectionAndView);
 		
-		// Save the current time to see how long it took :).
+	// Save the current time to see how long it took :).
         mLastTime = now;
 		
 	}
 	
 	private void render(float[] m) {
 		
-		System.out.println(GLES20.GL_TEXTURE0 );
-		System.out.println(GLES20.GL_TEXTURE1 );
-
-		// Clear Screen and Depth Buffer, we have set the clear color as black.
+	// Clear Screen and Depth Buffer, we have set the clear color as black.
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
         
         // Get handle to vertex shader's vPosition member
-	    int mPositionHandle = GLES20.glGetAttribLocation(ShaderTools.sp_Image, "vPosition");
+	int mPositionHandle = GLES20.glGetAttribLocation(ShaderTools.sp_Image, "vPosition");
 	    
-	    // Enable generic vertex attribute array
-	    GLES20.glEnableVertexAttribArray(mPositionHandle); 
+	// Enable generic vertex attribute array
+	GLES20.glEnableVertexAttribArray(mPositionHandle); 
 	    
-	    // Get handle to texture coordinates location
-	    int mTexCoordLoc = GLES20.glGetAttribLocation(ShaderTools.sp_Image, "a_texCoord" );
+	// Get handle to texture coordinates location
+	int mTexCoordLoc = GLES20.glGetAttribLocation(ShaderTools.sp_Image, "a_texCoord" );
 	    
-	    // Enable generic vertex attribute array
-	    GLES20.glEnableVertexAttribArray ( mTexCoordLoc );
+	// Enable generic vertex attribute array
+	GLES20.glEnableVertexAttribArray ( mTexCoordLoc );
 	    
-	    // Get handle to shape's transformation matrix
+	// Get handle to shape's transformation matrix
         int mtrxhandle = GLES20.glGetUniformLocation(ShaderTools.sp_Image, "uMVPMatrix");
 
         // Apply the projection and view transformation
@@ -150,25 +147,25 @@ public class GLRenderer implements Renderer {
 	@Override
 	public void onSurfaceChanged(GL10 gl, int width, int height) {
 		
-		// We need to know the current width and height.
-		mScreenWidth = width;
-		mScreenHeight = height;
+	// We need to know the current width and height.
+	mScreenWidth = width;
+	mScreenHeight = height;
 		
-		// Redo the Viewport, making it fullscreen.
-		GLES20.glViewport(0, 0, (int)mScreenWidth, (int)mScreenHeight);
+	// Redo the Viewport, making it fullscreen.
+	GLES20.glViewport(0, 0, (int)mScreenWidth, (int)mScreenHeight);
 		
-		// Clear our matrices
-	    for(int i=0;i<16;i++)
-	    {
-	    	mtrxProjection[i] = 0.0f;
-	    	mtrxView[i] = 0.0f;
-	    	mtrxProjectionAndView[i] = 0.0f;
-	    }
+	// Clear our matrices
+	for(int i=0;i<16;i++)
+	{
+	mtrxProjection[i] = 0.0f;
+	mtrxView[i] = 0.0f;
+	mtrxProjectionAndView[i] = 0.0f;
+	}
 	    
-	    // Setup our screen width and height for normal sprite translation.
-	    Matrix.orthoM(mtrxProjection, 0, 0f, mScreenWidth, 0.0f, mScreenHeight, 0, 50);
+	// Setup our screen width and height for normal sprite translation.
+	Matrix.orthoM(mtrxProjection, 0, 0f, mScreenWidth, 0.0f, mScreenHeight, 0, 50);
 	    
-	    // Set the camera position (View matrix)
+	// Set the camera position (View matrix)
         Matrix.setLookAtM(mtrxView, 0, 0f, 0f, 1f, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
 
         // Calculate the projection and view transformation
@@ -180,41 +177,41 @@ public class GLRenderer implements Renderer {
 	public void onSurfaceCreated(GL10 gl, EGLConfig config) {
 		
 		
-		// Set the clear color to black
-		GLES20.glClearColor(0.20f, 0.20f, 0.20f, 1);	
+	// Set the clear color to black
+	GLES20.glClearColor(0.20f, 0.20f, 0.20f, 1);	
 
-	    // Create the shaders, solid color
-	    int vertexShader = ShaderTools.loadShader(GLES20.GL_VERTEX_SHADER, ShaderTools.vs_SolidColor);
-	    int fragmentShader = ShaderTools.loadShader(GLES20.GL_FRAGMENT_SHADER, ShaderTools.fs_SolidColor);
+	// Create the shaders, solid color
+	int vertexShader = ShaderTools.loadShader(GLES20.GL_VERTEX_SHADER, ShaderTools.vs_SolidColor);
+	int fragmentShader = ShaderTools.loadShader(GLES20.GL_FRAGMENT_SHADER, ShaderTools.fs_SolidColor);
 
-	    ShaderTools.sp_SolidColor = GLES20.glCreateProgram();             // create empty OpenGL ES Program
-	    GLES20.glAttachShader(ShaderTools.sp_SolidColor, vertexShader);   // add the vertex shader to program
-	    GLES20.glAttachShader(ShaderTools.sp_SolidColor, fragmentShader); // add the fragment shader to program
-	    GLES20.glLinkProgram(ShaderTools.sp_SolidColor);                  // creates OpenGL ES program executables
+	ShaderTools.sp_SolidColor = GLES20.glCreateProgram();             // create empty OpenGL ES Program
+	GLES20.glAttachShader(ShaderTools.sp_SolidColor, vertexShader);   // add the vertex shader to program
+	GLES20.glAttachShader(ShaderTools.sp_SolidColor, fragmentShader); // add the fragment shader to program
+	GLES20.glLinkProgram(ShaderTools.sp_SolidColor);                  // creates OpenGL ES program executables
 	    
-	    // Create the shaders, images
-	    vertexShader = ShaderTools.loadShader(GLES20.GL_VERTEX_SHADER, ShaderTools.vs_Image);
-	    fragmentShader = ShaderTools.loadShader(GLES20.GL_FRAGMENT_SHADER, ShaderTools.fs_Image);
+	// Create the shaders, images
+	vertexShader = ShaderTools.loadShader(GLES20.GL_VERTEX_SHADER, ShaderTools.vs_Image);
+	fragmentShader = ShaderTools.loadShader(GLES20.GL_FRAGMENT_SHADER, ShaderTools.fs_Image);
 
-	    ShaderTools.sp_Image = GLES20.glCreateProgram();             // create empty OpenGL ES Program
-	    GLES20.glAttachShader(ShaderTools.sp_Image, vertexShader);   // add the vertex shader to program
-	    GLES20.glAttachShader(ShaderTools.sp_Image, fragmentShader); // add the fragment shader to program
-	    GLES20.glLinkProgram(ShaderTools.sp_Image);                  // creates OpenGL ES program executables
+	ShaderTools.sp_Image = GLES20.glCreateProgram();             // create empty OpenGL ES Program
+	GLES20.glAttachShader(ShaderTools.sp_Image, vertexShader);   // add the vertex shader to program
+	GLES20.glAttachShader(ShaderTools.sp_Image, fragmentShader); // add the fragment shader to program
+	GLES20.glLinkProgram(ShaderTools.sp_Image);                  // creates OpenGL ES program executables
 	    
-	    // Enable OpenGL transparency blending
-	    GLES20.glEnable(GLES20.GL_BLEND);
-	    GLES20.glBlendFunc(GLES20.GL_ONE, GLES20.GL_ONE_MINUS_SRC_ALPHA);
+	// Enable OpenGL transparency blending
+	GLES20.glEnable(GLES20.GL_BLEND);
+	GLES20.glBlendFunc(GLES20.GL_ONE, GLES20.GL_ONE_MINUS_SRC_ALPHA);
 	    
-	    // Set our shader programm
-		GLES20.glUseProgram(ShaderTools.sp_Image);
+	// Set our shader programm
+	GLES20.glUseProgram(ShaderTools.sp_Image);
 		
-		// Create the GLText
-		glText = new GLText(mContext.getAssets());
+	// Create the GLText
+	glText = new GLText(mContext.getAssets());
 
-		// Load the font from file (set size + padding), creates the texture		
-		glText.load( "LinLibertine_DR.ttf", 36, 2, 2 );  
+	// Load the font from file (set size + padding), creates the texture		
+	glText.load( "LinLibertine_DR.ttf", 36, 2, 2 );  
 
-		setupTextures();
+	setupTextures();
 
 			
 	}
@@ -223,28 +220,28 @@ public class GLRenderer implements Renderer {
 	public void processTouchEvent(MotionEvent event)
 	{
 		
-		float touchX = event.getX() / mScreenWidth;
-		float touchY = event.getY() / mScreenHeight;
+	float touchX = event.getX() / mScreenWidth;
+	float touchY = event.getY() / mScreenHeight;
 		
 		
-		if(touchY < .7)
+	if(touchY < .7)
 		{
-			// Translate sprite to touch location
-			logoSprite.translateSprite(touchX * mScreenWidth, mScreenHeight - touchY * mScreenHeight);
+		// Translate sprite to touch location
+		logoSprite.translateSprite(touchX * mScreenWidth, mScreenHeight - touchY * mScreenHeight);
 		}
-		else
+	else
 		{
-			// Switch activity while preserving OpenGL Context
-			Intent intent = new Intent(mContext,ActivityTwo.class);
-			mContext.startActivity(intent);
-			this.onPause();
+		// Switch activity while preserving OpenGL Context
+		Intent intent = new Intent(mContext,ActivityTwo.class);
+		mContext.startActivity(intent);
+		this.onPause();
 
 		}
 	}
 	
 	public void updateScene(float delta)
 	{
-		/* Update scene according to delta time */
+	/* Update scene according to delta time */
 		
 		
 	}
@@ -252,22 +249,22 @@ public class GLRenderer implements Renderer {
 	
 	public void setupTextures()
 	{
-		// Load texture and associated sprite
-		logo = new Texture(true, 1, "drawable/logo", mContext);
-		// Sprite(location X, location Y, bind width, bind height, app context) 
-		logoSprite = new Sprite(mScreenWidth/2,mScreenHeight/2, 600,259, mContext);
+	// Load texture and associated sprite
+	logo = new Texture(true, 1, "drawable/logo", mContext);
+	// Sprite(location X, location Y, bind width, bind height, app context) 
+	logoSprite = new Sprite(mScreenWidth/2,mScreenHeight/2, 600,259, mContext);
 
-		// Load sprite sheet and an associated sprite sheet sprite
-		// SSTexture(filename, cell count X, cell count Y, app context )
-		logoSpriteSheet = new SSTexture("drawable/logospritesheet250x250", 2, 2, mContext);
-		// SSSprite(location X, location Y, bind width, bind height, cell X, cell Y, app context) 
-		logoiconSS = new SSSprite(mScreenWidth / 2 ,mScreenHeight/6, 250,250, logoSpriteSheet, 0, 0, mContext);
+	// Load sprite sheet and an associated sprite sheet sprite
+	// SSTexture(filename, cell count X, cell count Y, app context )
+	logoSpriteSheet = new SSTexture("drawable/logospritesheet250x250", 2, 2, mContext);
+	// SSSprite(location X, location Y, bind width, bind height, cell X, cell Y, app context) 
+	logoiconSS = new SSSprite(mScreenWidth / 2 ,mScreenHeight/6, 250,250, logoSpriteSheet, 0, 0, mContext);
 
 	}
 	
 	public void drawSprites(int mPositionHandle, int mTexCoordLoc, float [] m)
 	{
-		 // Draw sprites
+	// Draw sprites
         logoSprite.drawSprite(mPositionHandle, mTexCoordLoc, m, logo);
         logoiconSS.drawSprite(mPositionHandle, mTexCoordLoc, m);
 
