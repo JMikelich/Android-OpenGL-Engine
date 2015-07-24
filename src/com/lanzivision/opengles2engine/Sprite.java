@@ -109,14 +109,12 @@ public class Sprite {
 	GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_LINEAR);
 	  
 	// Prepare the triangle coordinate data
-	GLES20.glVertexAttribPointer(mPositionHandle, 3,
-	                                 GLES20.GL_FLOAT, false,
-	                                 0, vertexBuffer);
+	GLES20.glVertexAttribPointer(mPositionHandle, 3, GLES20.GL_FLOAT,
+		false, 0, vertexBuffer);
 	    
 	// Prepare the texturecoordinates
 	GLES20.glVertexAttribPointer ( mTexCoordLoc, 2, GLES20.GL_FLOAT,
-        	false, 
-                0, currentTexture.uvBuffer);
+        	false, 0, currentTexture.uvBuffer);
 	    
 	// Get handle to textures locations
         int mSamplerLoc2 = GLES20.glGetUniformLocation (ShaderTools.sp_Image, "s_texture" );
